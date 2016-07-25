@@ -11,6 +11,6 @@
     2. $make run 
     3. $make clean
 
- *Copyright Jaehwan Lim 
+ *Copyright ⓒ Jaehwan Lim 
   weeneen02@gmail.com*
 
