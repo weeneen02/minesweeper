@@ -1,0 +1,236 @@
+
+This is the specs about mine.c
+
+Variable
+
+row X col
+7X10  x X y => x+2, y+1... 
+real - 5X9
+char** game -> 1111111111@
+            -> 10000*0000@
+            -> 1000*00*00@
+            -> 10**000*00@
+            -> 100*00*0**@
+            -> 1*00*0000*@
+            -> 1111111111@
+            -> NULL
+@ is \0.
+1 is shield.
+
+window. 
+   
+We are gonna set number 9 all area first
+
+-----------------------------------
+
+set mine.
+get the number of mine and grid.
+
+number - 10
+for 0~ 9 {
+
+x = rand();
+y = (x % 45) == get 0~44
+row = (y / col) + 1;
+col = (y % col) + 1;
+
+*(grid + row) + col
+
+45  
+*(grid + 3) + 4
+
+we need to know row and col values by checking the grid.
+and then
+
+for (0~n)
+get uiRandVal
+get uiVal. 
+get row
+get col
+if ( (row, col) is set '*'?)
+    yes continue;
+
+    no 
+        set '*' (row, col)
+
+for end
+----------------------------------------
+set number function.
+
+row X col
+7X10  x X y => x+2, y+1... 
+real - 5X9
+char** game -> 1111111111@
+            -> 10000*0000@
+            -> 1000*00*00@
+            -> 10**000*00@
+            -> 100*00*0**@
+            -> 1*00*0000*@
+            -> 1111111111@
+            -> NULL
+@ is \0.
+1 is shield.
+
+window. 
+
+algorithm.
+we have to start from (1,1) array to (5,9).
+we need 3X3 window to search to count mines.
+not count '9'. only count '*'.
+
+for ( 1 ~ row )
+    for ( 1 ~ col )
+        if here is mine?
+            yes 
+                return;
+            no 
+                 use 3X3 window(return mine number)
+        if end
+    for end
+for end
+
+------------------------------------------
+search window (row, col, grid) return : mine number.
+for ( (row - 1) ~ (row + 1) )
+    for ( (col - 1) ~ (col + 1) && not '\0' )
+        if ( (x,y) == '*')
+            count++;
+    for end
+for end
+return count;
+------------------------------------------
+Print grid (grid)
+
+row X col
+7X10  x X y => x+2, y+1... 
+real - 5X9
+char** game -> 1111111111@
+            -> 10000*0000@
+            -> 1000*00*00@
+            -> 10**000*00@
+            -> 100*00*0**@
+            -> 1*00*0000*@
+            -> 1111111111@
+            -> NULL
+@ is \0.
+1 is shield.
+
+---------------------------------------------------------------
+This is what I've studied about using pointers
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(int argc, char** argv)
+{
+    char **new;
+    char *pNew = NULL;
+    char array[10] = {0,};
+
+
+
+
+
+
+    new = (char**)malloc(sizeof(char*) * 4);
+    memset(new, 0, sizeof(char*) * 4);
+
+    *(new+0) = (char*)malloc(sizeof(char) * 10);
+    memset(*(new+0), 0, sizeof(char) * 10); 
+    
+
+//    *(new+0)+0 = 'a';
+
+
+
+    pNew = *(new+0);
+    *((*(new+0)) + 0) = 'c';
+    *((*(new+0)) + 1) = 'd';
+    //*(pNew + 0) = 'a';
+    //*(pNew + 1) = 'b';
+
+    *(new+1) = "hello";
+//    printf("%s\n", *(new+1));
+    fflush(stdout); 
+    printf("%s\n", *(new+1));
+    fflush(stdout);
+    printf("%s\n", *(new+0));
+
+    printf("%x\n", *(new+0));
+   free(new);
+    return 0;
+}
+---------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(int argc, char** argv)
+{
+    char* new[4] = {0,};
+
+    new[0] = (char*)malloc(sizeof(char) * 10);
+    memset(new[0], 0, sizeof(char) * 10);
+
+    *(new[0] + 0) = 'a';
+
+    printf("%s\n",new[0]);
+    return 0;
+}
+-------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+    char new[3][10] = {0,};
+    
+    *(new + 0) + 0 = 'a';
+
+    printf("%s\n", *(new+0));
+    return 0;
+}
+
+-------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char** argv)
+{
+    char* new;
+
+    new = (char*)malloc(sizeof(char) * 10);
+    memset(new, 0, sizeof(char) * 10);
+
+    *(new+0) = 'a';
+    *new + 0 = 'b'; // 주소값이 들어가야하는데 문자열값이 들어가게되지.
+
+    printf("%s\n", new);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
